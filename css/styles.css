@@ -905,3 +905,30 @@ footer {
   .team-banner-text h2{ font-size: 30px; }
   .team-banner-text p{ font-size: 16px; }
 }
+
+/* 修复：移动端点击链接却触发汉堡菜单（常见于元素遮挡） */
+@media (max-width: 968px) {
+nav { position: relative; }
+
+/* 汉堡按钮在右侧，但不要变成覆盖全屏的隐形层 */
+#mobileMenuBtn {
+    position: relative;
+    z-index: 3000;
+    pointer-events: auto;
+}
+
+/* 导航 logo/区域也保持可点 */
+.logo {
+    position: relative;
+    z-index: 2000;
+    pointer-events: auto;
+}
+
+/* 如果你有任何透明层挡住页面，先禁掉它的点击 */
+.mobile-menu-overlay {
+    pointer-events: none;
+}
+.mobile-menu-overlay.active {
+    pointer-events: auto;
+}
+}
